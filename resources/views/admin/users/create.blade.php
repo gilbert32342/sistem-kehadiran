@@ -22,13 +22,13 @@
         @if(isset($user)) @method('PUT') @endif
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- Nama -->
+            
             <div>
                 <label class="block font-semibold">Nama:</label>
                 <input type="text" name="name" value="{{ old('name', $user->name ?? '') }}" required class="w-full p-2 border rounded">
             </div>
 
-            <!-- Role -->
+            
             <div>
                 <label class="block font-semibold">Role:</label>
                 <select name="role" id="roleSelect" class="w-full p-2 border rounded" required>
@@ -37,7 +37,7 @@
                 </select>
             </div>
 
-            <!-- NIS/NIP -->
+           
             <div id="nisInput" class="{{ old('role', $user->role ?? '') == 'siswa' ? '' : 'hidden' }}">
                 <label class="block font-semibold">NIS:</label>
                 <input type="text" name="nis" value="{{ old('nis', $user->nis ?? '') }}" class="w-full p-2 border rounded">
@@ -48,13 +48,13 @@
                 <input type="text" name="nip" value="{{ old('nip', $user->nip ?? '') }}" class="w-full p-2 border rounded">
             </div>
 
-            <!-- Kelas (hanya untuk siswa) -->
+            
             <div id="kelasInput" class="{{ old('role', $user->role ?? '') == 'siswa' ? '' : 'hidden' }}">
                 <label class="block font-semibold">Kelas:</label>
                 <input type="text" name="kelas" value="{{ old('kelas', $user->kelas ?? '') }}" class="w-full p-2 border rounded">
             </div> 
 
-            <!-- Password -->
+            
             <div>
                 <label class="block font-semibold">Password:</label>
                 <input type="password" name="password" class="w-full p-2 border rounded" {{ isset($user) ? '' : 'required' }}>
@@ -64,19 +64,19 @@
             </div>
         </div>
 
-        <!-- Tombol Simpan -->
+        
         <button type="submit" class="mt-4 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
             {{ isset($user) ? 'Update' : 'Tambah' }}
         </button>
     </form>
 
-    <!-- Tombol Kembali -->
+    
     <div class="mt-6">
         <a href="{{ route('admin.users.index') }}" class="block text-center text-blue-600 hover:underline">Kembali ke daftar pengguna</a>
     </div>
 </div>
 
-<!-- JavaScript untuk Menampilkan/Menyembunyikan Input NIS/NIP -->
+
 <script>
 document.getElementById('roleSelect').addEventListener('change', function() {
     let role = this.value;

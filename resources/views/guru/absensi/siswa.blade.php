@@ -6,7 +6,7 @@
 <div class="max-w-5xl mx-auto mt-6 animate-fade-in" x-data="{ showNotification: true }">
     <h1 class="text-2xl font-bold text-gray-700 mb-4 animate-fade-in-up">📋 Absensi Siswa</h1>
 
-    <!-- 🔹 Notifikasi -->
+    
     @if(session('success') || session('error'))
         <div x-show="showNotification" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-y-4" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform translate-y-4" class="relative mb-4 p-4 rounded-lg shadow-md {{ session('success') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
             {!! session('success') ?? session('error') !!}
@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <!-- 🔹 Filter Kelas -->
+    
     <form action="{{ route('guru.absensi.siswa') }}" method="GET" class="mb-4">
         <div class="flex gap-3">
             <select name="kelas" class="border p-2 rounded-lg shadow-sm">
@@ -29,7 +29,7 @@
         </div>
     </form>
 
-    <!-- 🔹 Form Absensi -->
+    
     <form action="{{ route('guru.absensi.siswa.store') }}" method="POST">
         @csrf
 
@@ -63,7 +63,7 @@
             </table>
         </div>
 
-        <!-- 🔹 Tombol Simpan -->
+        
         <div class="mt-5 text-right animate-fade-in-up">
             <button type="submit" class="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
                 💾 Simpan Absensi

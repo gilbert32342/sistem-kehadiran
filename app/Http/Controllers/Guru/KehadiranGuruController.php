@@ -13,19 +13,19 @@ class KehadiranGuruController extends Controller
 {
     public function index()
     {
-        $guru = Auth::user(); // Ambil data guru yang login
+        $guru = Auth::user(); 
         $kehadiran = Absensi::where('user_id', $guru->id)
-                            ->where('role', 'guru') // Pastikan hanya untuk guru
+                            ->where('role', 'guru') 
                             ->orderBy('tanggal', 'desc')
-                            ->paginate(10); // Pagination 10 data per halaman
+                            ->paginate(10); 
     
         return view('guru.kehadiran.guru', compact('kehadiran', 'guru'));
     }    
        
     public function exportGuruExcel()
     {
-        $guru = Auth::user(); // Ambil data guru yang sedang login
-        $fileName = 'kehadiran_' . str_replace(' ', '_', strtolower($guru->name)) . '.xlsx'; // Nama file dinamis
+        $guru = Auth::user(); 
+        $fileName = 'kehadiran_' . str_replace(' ', '_', strtolower($guru->name)) . '.xlsx'; 
     
         return Excel::download(new GuruAbsensiExport($guru->id), $fileName);
     }    

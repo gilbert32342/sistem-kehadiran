@@ -14,7 +14,7 @@ class MateriController extends Controller
     {
         $sortOrder = $request->input('sort', 'asc');
     
-        $materis = Materi::with('creator') // Tambahkan eager loading user
+        $materis = Materi::with('creator') 
             ->orderBy('judul', $sortOrder)
             ->paginate(5);
     
@@ -37,7 +37,7 @@ class MateriController extends Controller
         $filePath = null;
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $filename = $file->getClientOriginalName(); // Gunakan nama asli tanpa tambahan angka
+            $filename = $file->getClientOriginalName(); 
             $filePath = $file->storeAs('materi_files', $filename, 'public');            
         }
 
@@ -45,7 +45,7 @@ class MateriController extends Controller
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
             'file_path' => $filePath, 
-            'created_by' => Auth::id(), // ✅ Simpan ID pembuat materi
+            'created_by' => Auth::id(), 
         ]);
 
         return redirect()->route('admin.materi.index')->with('success', '✅ Materi berhasil ditambahkan!');
@@ -69,7 +69,7 @@ class MateriController extends Controller
                 Storage::disk('public')->delete($materi->file_path);
             }
             $file = $request->file('file');
-            $filename = $file->getClientOriginalName(); // Gunakan nama asli tanpa tambahan angka
+            $filename = $file->getClientOriginalName(); 
             $filePath = $file->storeAs('materi_files', $filename, 'public');            
             $materi->file_path = $filePath;            
         }
@@ -88,10 +88,9 @@ class MateriController extends Controller
         $materi = Materi::findOrFail($id);
     
         if ($materi->file_path) {
-            // Hapus file dari storage
             Storage::delete('public/' . $materi->file_path);
     
-            // Set kolom file_path menjadi null
+            
             $materi->file_path = null;
             $materi->save();
     

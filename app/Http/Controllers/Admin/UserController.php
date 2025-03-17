@@ -33,13 +33,13 @@ class UserController extends Controller
             'nip' => 'nullable|string|max:20|unique:users,nip',
             'role' => 'required|in:admin,guru,siswa',
             'password' => 'required|min:6',
-            'kelas' => 'nullable|string|max:50', // ✅ Pastikan kelas divalidasi
+            'kelas' => 'nullable|string|max:50', 
         ]);
     
         User::create([
             'name' => $request->name,
-            'nis' => $request->role === 'siswa' ? $request->nis : null, // NIS hanya untuk siswa
-            'nip' => $request->role === 'guru' ? $request->nip : null, // NIP hanya untuk guru
+            'nis' => $request->role === 'siswa' ? $request->nis : null,
+            'nip' => $request->role === 'guru' ? $request->nip : null, 
             'role' => $request->role,
             'password' => bcrypt($request->password),
             'kelas' => $request->role == 'siswa' ? $request->kelas : null,
@@ -62,7 +62,7 @@ class UserController extends Controller
             'role' => 'required|in:guru,siswa',
             'nip'  => 'nullable|required_if:role,guru|unique:users,nip,' . $user->id,
             'nis'  => 'nullable|required_if:role,siswa|unique:users,nis,' . $user->id,
-            'kelas' => 'nullable|string|max:50', // ✅ Pastikan kelas divalidasi
+            'kelas' => 'nullable|string|max:50', 
         ]);
     
         $user->update([
@@ -70,7 +70,7 @@ class UserController extends Controller
             'role' => $request->role,
             'nip' => $request->role == 'guru' ? $request->nip : null,
             'nis' => $request->role == 'siswa' ? $request->nis : null,
-            'kelas' => $request->role == 'siswa' ? $request->kelas : null, // ✅ Pastikan `kelas` ikut diupdate
+            'kelas' => $request->role == 'siswa' ? $request->kelas : null, 
         ]);
     
         return redirect()->route('admin.users.index')->with('success', 'Data berhasil diperbarui!');

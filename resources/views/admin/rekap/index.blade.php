@@ -6,7 +6,7 @@
 <div class="container mx-auto p-6">
     <h2 class="text-2xl font-bold mb-6">📌 Rekap Absensi</h2>
 
-    {{-- Filter Status --}}
+    
     <form action="{{ route('admin.rekap.index') }}" method="GET" class="flex gap-3 mb-6">
         <select name="status" class="border p-2 rounded-lg shadow-sm">
             <option value="">Pilih Status</option>
@@ -20,14 +20,14 @@
         </button>
     </form>
 
-    {{-- Export Button --}}
+    
     <div class="flex gap-3 mb-6">
         <a href="{{ route('admin.rekap.export') }}" class="bg-green-500 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-green-600 transition-transform transform hover:scale-105">
             📥 Export Excel
         </a>
     </div>
 
-    {{-- Tabel Absensi Siswa --}}
+    
     <h3 class="text-xl font-semibold mb-4">📚 Absensi Siswa</h3>
     <div class="overflow-x-auto bg-white shadow-md rounded-lg">
         <table class="w-full border-collapse">
@@ -63,13 +63,13 @@
                 @endforeach
             </tbody>
         </table>
-        {{-- Pagination --}}
+        
         <div class="mt-4 p-3">
             {{ $rekapSiswa->links('vendor.pagination.default') }}
         </div>
     </div>
 
-    {{-- Tabel Absensi Guru --}}
+    
     <h3 class="text-xl font-semibold mt-8 mb-4">👨‍🏫 Absensi Guru</h3>
     <div class="overflow-x-auto bg-white shadow-md rounded-lg">
         <table class="w-full border-collapse">
@@ -103,14 +103,14 @@
                 @endforeach
             </tbody>
         </table>
-        {{-- Pagination --}}
+        
         <div class="mt-4 p-3">
             {{ $rekapGuru->links('vendor.pagination.default') }}
         </div>
     </div>
 </div>
 
-{{-- Modal Edit --}}
+
 <div id="modalEdit" class="fixed inset-0 bg-black bg-opacity-50 justify-center items-center hidden">
     <div class="bg-white p-6 rounded-lg shadow-xl w-96 transform transition-all duration-300 scale-95 opacity-0 modal-content">
         <h2 class="text-xl font-bold mb-4">Edit Absensi</h2>
@@ -134,7 +134,7 @@
     </div>
 </div>
 
-{{-- Modal Hapus --}}
+
 <div id="modalDelete" class="fixed inset-0 bg-black bg-opacity-50 justify-center items-center hidden">
     <div class="bg-white p-6 rounded-lg shadow-xl w-96 transform transition-all duration-300 scale-95 opacity-0 modal-content">
         <h2 class="text-xl font-bold mb-4">Yakin ingin menghapus?</h2>

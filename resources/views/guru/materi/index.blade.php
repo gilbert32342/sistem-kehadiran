@@ -4,13 +4,11 @@
 <div class="max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-lg animate-fade-in">
     <h1 class="text-2xl font-semibold text-gray-800 mb-4">📚 Materi Saya</h1>
 
-    {{-- Tombol Tambah dan Sorting --}}
     <div class="flex justify-between items-center mb-4 animate-fade-in-up">
         <a href="{{ route('guru.materi.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
             + Tambah Materi
         </a>
-
-        {{-- Dropdown Sorting --}}
+        
         <form method="GET" action="{{ route('guru.materi.index') }}" class="flex items-center">
             <label class="mr-2 text-gray-700">Urutkan:</label>
             <select name="sort" class="border rounded px-3 py-1 transition duration-300 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="this.form.submit()">
@@ -20,7 +18,7 @@
         </form>
     </div>
 
-    {{-- Tabel Materi --}}
+    
     <div class="overflow-x-auto animate-fade-in-up">
         <table class="w-full border-collapse border border-gray-200">
             <thead class="bg-gray-100">
@@ -67,7 +65,7 @@
         </table>
     </div>
 
-    {{-- Pagination --}}
+    
     <div class="mt-4 animate-fade-in">
         {{ $materis->links() }}
     </div>

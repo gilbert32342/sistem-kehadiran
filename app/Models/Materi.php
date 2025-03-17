@@ -13,7 +13,7 @@ class Materi extends Model
 
     protected $fillable = ['judul', 'deskripsi', 'file_path', 'created_by'];
 
-    // ✅ Relasi ke tabel users (untuk mengetahui siapa pembuat materi)
+
     public function creator()
     {
         return $this->belongsTo(User::class, 'created_by');

@@ -4,7 +4,7 @@
 <div class="container mx-auto p-5">
     <h2 class="text-2xl font-bold mb-4 animate-fade-in">📚 Daftar Materi</h2>
 
-    <!-- Filter Pengurutan -->
+    
     <div class="mb-4 flex justify-between items-center animate-fade-in">
         <form method="GET" action="{{ route('siswa.materi.index') }}" class="flex items-center space-x-2">
             <label for="sort" class="text-gray-700">Urutkan:</label>
@@ -25,7 +25,7 @@
     </div>
     @endforeach    
 
-    <!-- Pagination -->
+   
     <div class="mt-5 animate-fade-in">
         {{ $materis->appends(['sort' => request('sort')])->links() }}
     </div>

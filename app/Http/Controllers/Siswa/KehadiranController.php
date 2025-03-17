@@ -13,18 +13,18 @@ class KehadiranController extends Controller
 {
     public function index()
     {
-        $siswa = Auth::user(); // Ambil siswa yang login
+        $siswa = Auth::user(); 
         $kehadiran = Absensi::where('user_id', $siswa->id)
                             ->orderBy('tanggal', 'desc')
-                            ->paginate(10); // Pagination 10 data per halaman
+                            ->paginate(10); 
     
         return view('siswa.kehadiran.index', compact('kehadiran', 'siswa'));
     }
        
     public function export()
     {
-        $siswa = Auth::user(); // Ambil data siswa yang sedang login
-        $fileName = 'kehadiran_' . str_replace(' ', '_', strtolower($siswa->name)) . '.xlsx'; // Nama file dinamis
+        $siswa = Auth::user(); 
+        $fileName = 'kehadiran_' . str_replace(' ', '_', strtolower($siswa->name)) . '.xlsx'; 
     
         return Excel::download(new KehadiranExport($siswa->id), $fileName);
     }    

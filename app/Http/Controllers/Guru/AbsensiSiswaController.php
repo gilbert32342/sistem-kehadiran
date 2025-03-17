@@ -12,7 +12,7 @@ class AbsensiSiswaController extends Controller
 {
     public function index(Request $request)
     {
-        $kelasList = User::where('role', 'siswa')->distinct()->pluck('kelas'); // Ambil daftar kelas unik
+        $kelasList = User::where('role', 'siswa')->distinct()->pluck('kelas'); 
         $query = User::where('role', 'siswa');
     
         if ($request->has('kelas') && $request->kelas != '') {
@@ -31,7 +31,7 @@ class AbsensiSiswaController extends Controller
             'absensi.*' => 'in:hadir,izin,sakit,alpha',
         ]);
     
-        $guruId = Auth::id(); // ID guru yang login
+        $guruId = Auth::id(); 
         $tanggalHariIni = now()->toDateString();
         $errors = [];
     
@@ -39,23 +39,23 @@ class AbsensiSiswaController extends Controller
             $siswa = User::where('nis', $nis)->first();
     
             if ($siswa) {
-                // Cek apakah siswa sudah diabsen hari ini
+                
                 $sudahAbsen = Absensi::where('user_id', $siswa->id)
                     ->where('tanggal', $tanggalHariIni)
                     ->exists();
     
                 if ($sudahAbsen) {
-                    // Tambahkan ke daftar error jika sudah absen
+                    
                     $errors[] = "Siswa dengan NIS {$siswa->nis} sudah diabsen hari ini.";
                     continue;
                 }
     
-                // Jika belum absen, simpan data absensi
+                
                 Absensi::create([
                     'user_id' => $siswa->id,
                     'nama' => $siswa->name,
                     'nis' => $siswa->nis,
-                    'kelas' => $siswa->kelas, // ✅ Tambahkan kelas
+                    'kelas' => $siswa->kelas, 
                     'status' => $status,
                     'tanggal' => now(),
                     'role' => 'siswa',
@@ -64,7 +64,7 @@ class AbsensiSiswaController extends Controller
             }
         }
     
-        // Jika ada error, tampilkan pesan
+        
         if (!empty($errors)) {
             return redirect()->route('guru.absensi.siswa')
                 ->with('error', implode('<br>', $errors));

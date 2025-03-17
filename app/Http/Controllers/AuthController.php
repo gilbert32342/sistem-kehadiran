@@ -29,7 +29,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        // Cek apakah input adalah NIS atau NIP
+        
         $user = User::where('nis', $credentials['nis_nip'])
                     ->orWhere('nip', $credentials['nis_nip'])
                     ->first();

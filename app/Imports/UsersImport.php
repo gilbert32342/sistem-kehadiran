@@ -13,11 +13,11 @@ class UsersImport implements ToModel, WithHeadingRow
     {
         return new User([
             'name'     => $row['name'],
-            'nis'      => $row['nis'] ?? null, // Hanya untuk siswa
-            'nip'      => $row['nip'] ?? null, // Hanya untuk guru
+            'nis'      => $row['nis'] ?? null, 
+            'nip'      => $row['nip'] ?? null, 
             'password' => Hash::make($row['password']),
-            'role'     => $row['role'], // siswa atau guru
-            'kelas'    => $row['kelas'] ?? null, // Hanya siswa yang punya kelas
+            'role'     => $row['role'], 
+            'kelas'    => $row['kelas'] ?? null, 
         ]);
     }
 }

@@ -8,25 +8,25 @@
         <form action="{{ route('guru.materi.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
-            <!-- Judul -->
+            
             <div class="mb-4 animate-fade-in-up">
                 <label class="block text-gray-600 font-semibold mb-2">Judul Materi</label>
                 <input type="text" name="judul" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300 ease-in-out" placeholder="Masukkan judul materi" required>
             </div>
 
-            <!-- Deskripsi -->
+            
             <div class="mb-4 animate-fade-in-up">
                 <label class="block text-gray-600 font-semibold mb-2">Deskripsi</label>
                 <textarea name="deskripsi" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300 ease-in-out" placeholder="Tambahkan deskripsi materi..." required></textarea>
             </div>
 
-            <!-- Upload File -->
+            
             <div class="mb-4 animate-fade-in-up">
                 <label class="block text-gray-600 font-semibold mb-2">Upload File (Opsional)</label>
                 <input type="file" name="file" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300 ease-in-out">
             </div>
 
-            <!-- Tombol Submit -->
+            
             <button type="submit" class="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105 animate-fade-in-up">
                 🚀 Simpan Materi
             </button>

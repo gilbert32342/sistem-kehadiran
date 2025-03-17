@@ -106,7 +106,7 @@
         </div>
     </div>
 
-    <!-- Main Content -->
+    
     <div :class="{'ml-72': open, 'ml-24': !open}" class="flex-1 min-h-screen transition-all duration-300">
         <nav class="bg-gradient-to-r from-blue-600 to-blue-500 p-4 text-white shadow-lg">
             <div class="container mx-auto flex justify-between items-center">

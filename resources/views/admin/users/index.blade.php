@@ -6,7 +6,7 @@
 <div class="container mx-auto p-5">
     <h2 class="text-2xl font-bold mb-6 text-gray-800">Manajemen Guru & Siswa</h2>
     
-    <!-- Notifikasi -->
+    
     @if (session('success'))
         <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6" role="alert">
             <p>{{ session('success') }}</p>
@@ -19,9 +19,8 @@
         </div>
     @endif
 
-    <!-- Tombol Aksi -->
+    
     <div class="flex flex-wrap gap-4 mb-6">
-        <!-- Tombol Tambah Data -->
         <a href="{{ route('admin.users.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-transform transform hover:scale-105 flex items-center gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 3a1 1 0 00-1 1v5H4a1 1 0 100 2h5v5a1 1 0 102 0v-5h5a1 1 0 100-2h-5V4a1 1 0 00-1-1z" clip-rule="evenodd" />
@@ -29,7 +28,6 @@
             Tambah Data
         </a>
         
-        <!-- Form Import Data -->
         <form action="{{ route('admin.users.import') }}" method="POST" enctype="multipart/form-data" class="flex gap-2 items-center">
             @csrf
             <input type="file" name="file" class="border p-2 rounded-md bg-white shadow-sm" required>
@@ -42,7 +40,7 @@
         </form>
     </div>
 
-    <!-- Tabel User -->
+    
     <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
         <table class="min-w-full border-collapse">
             <thead>
@@ -91,7 +89,7 @@
         </table>
     </div>
 
-    <!-- Pagination -->
+    
     <div class="mt-6">
         {{ $users->links('vendor.pagination.default') }}
     </div>

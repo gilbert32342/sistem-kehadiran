@@ -4,7 +4,7 @@
 <div class="container mx-auto px-4 py-6 animate-fade-in">
     <h2 class="text-2xl font-bold text-gray-800 mb-4 animate-fade-in-up">📋 Riwayat Kehadiran Siswa</h2>
 
-    <!-- Filter -->
+    
     <form method="GET" action="{{ route('guru.kehadiran.index') }}" class="mb-6 flex items-center gap-4 animate-fade-in-up">
         <div>
             <label for="kelas" class="mr-2 text-gray-700">Filter Kelas:</label>
@@ -33,7 +33,7 @@
         </button>
     </form>
 
-    <!-- Export Buttons -->
+    
     <div class="mb-6 flex gap-2 animate-fade-in-up">
         <a href="{{ route('guru.kehadiran.exportExcel') }}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300 ease-in-out transform hover:scale-105">
             Export Excel
@@ -43,7 +43,7 @@
         </a>
     </div>
 
-    <!-- Table -->
+    
     <div class="bg-white shadow-lg rounded-lg overflow-hidden animate-fade-in-up">
         <table class="min-w-full bg-white border border-gray-200">
             <thead class="bg-gray-800 text-white">
@@ -74,7 +74,7 @@
         </table>
     </div>
 
-    <!-- Pagination -->
+   
     <div class="mt-6 animate-fade-in">
         {{ $absensi->links('vendor.pagination.default') }}
     </div>

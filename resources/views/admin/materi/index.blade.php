@@ -7,14 +7,14 @@
 <div class="max-w-6xl mx-auto p-6 bg-white shadow-md rounded-lg">
     <h1 class="text-2xl font-semibold text-gray-800 mb-4">Manajemen Materi</h1>
 
-    {{-- Tombol Tambah dan Dropdown Sorting --}}
+    
     <div class="flex justify-between items-center mb-4">
-        {{-- Tombol Tambah Materi --}}
+        
         <a href="{{ route('admin.materi.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-transform transform hover:scale-105">
             + Tambah Materi
         </a>
     
-        {{-- Dropdown Sorting --}}
+        
         <form method="GET" action="{{ route('admin.materi.index') }}" class="flex items-center">
             <label class="mr-2 text-gray-700">Urutkan:</label>
             <select name="sort" class="border rounded px-3 py-1 transition-transform transform hover:scale-105" onchange="this.form.submit()">
@@ -24,7 +24,7 @@
         </form>
     </div>
 
-    {{-- Tabel Materi --}}
+    
     <div class="overflow-x-auto">
         <table class="w-full border-collapse border border-gray-200 shadow-sm">
             <thead class="bg-gray-100">
@@ -57,11 +57,11 @@
                     </td>
                     <td class="border px-4 py-2 text-center">
                         <div class="flex justify-center items-center space-x-2">
-                            {{-- Tombol Edit --}}
+                            
                             <a href="{{ route('admin.materi.edit', $materi->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600 transition-transform transform hover:scale-105">
                                 Edit
                             </a>
-                            {{-- Tombol Hapus --}}
+                            
                             <form action="{{ route('admin.materi.destroy', $materi->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?');">
                                 @csrf
                                 @method('DELETE')
@@ -77,7 +77,7 @@
         </table>
     </div>
 
-    {{-- Pagination --}}
+    
     <div class="mt-4">
         {{ $materis->links('vendor.pagination.default') }}
     </div>    

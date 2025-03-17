@@ -21,14 +21,14 @@
         @csrf
         @method('PUT')
 
-        <!-- Nama -->
+        
         <div>
             <label class="block text-gray-700 font-semibold">Nama:</label>
             <input type="text" name="name" value="{{ old('name', $user->name) }}" 
                 class="border p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
         </div>
 
-        <!-- Role -->
+        
         <div>
             <label class="block text-gray-700 font-semibold">Role:</label>
             <select name="role" id="roleSelect" class="border p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
@@ -37,7 +37,7 @@
             </select>
         </div>
 
-        <!-- NIS/NIP -->
+        
         <div id="nipInput" class="{{ old('role', $user->role) == 'guru' ? '' : 'hidden' }}">
             <label class="block text-gray-700 font-semibold">NIP (Nomor Induk Pegawai):</label>
             <input type="text" name="nip" value="{{ old('nip', $user->nip ?? '') }}" 
@@ -50,13 +50,13 @@
                 class="border p-2 w-full rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
 
-        <!-- Kelas (hanya untuk siswa) -->
+        
         <div id="kelasInput" class="{{ old('role', $user->role ?? '') == 'siswa' ? '' : 'hidden' }}">
             <label class="block font-semibold">Kelas:</label>
             <input type="text" name="kelas" value="{{ old('kelas', $user->kelas ?? '') }}" class="w-full p-2 border rounded">
         </div> 
 
-        <!-- Tombol -->
+        
         <div class="flex justify-between">
             <a href="{{ route('admin.users.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600">Kembali</a>
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Simpan Perubahan</button>
@@ -64,7 +64,7 @@
     </form>
 </div>
 
-<!-- JavaScript untuk Menampilkan/Menyembunyikan Input NIS/NIP -->
+
 <script>
 document.getElementById('roleSelect').addEventListener('change', function() {
     let role = this.value;

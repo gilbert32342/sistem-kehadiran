@@ -10,7 +10,7 @@ class StatistikKehadiranController extends Controller
 {
     public function index()
     {
-        return $this->statistik(); // Arahkan ke fungsi statistik()
+        return $this->statistik(); 
     }
 
     public function statistik()

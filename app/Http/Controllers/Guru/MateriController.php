@@ -13,10 +13,10 @@ class MateriController extends Controller
 
     public function index(Request $request)
     {
-        $sortOrder = $request->input('sort', 'asc'); // Urutan default A-Z
-        $materis = Materi::where('created_by', Auth::id()) // Hanya materi yang dibuat sendiri
+        $sortOrder = $request->input('sort', 'asc'); 
+        $materis = Materi::where('created_by', Auth::id()) 
             ->orderBy('judul', $sortOrder)
-            ->paginate(5); // 5 item per halaman
+            ->paginate(5); 
 
         return view('guru.materi.index', compact('materis', 'sortOrder'));
     }
@@ -44,7 +44,7 @@ class MateriController extends Controller
         Materi::create([
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
-            'file_path' => $filePath, // ✅ Perbaikan di sini
+            'file_path' => $filePath, 
             'created_by' => Auth::id(),
         ]);
     

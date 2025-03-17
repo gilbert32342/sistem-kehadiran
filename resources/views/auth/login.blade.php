@@ -9,13 +9,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
 
     <style>
-        /* Background animasi */
+    
         .bg-image {
             background: url('image/bg_login.jpg') no-repeat center center;
             background-size: cover;
         }
 
-        /* Animasi fade-in untuk form */
+        
         .fade-in {
             opacity: 0;
             transform: translateY(-20px);
@@ -29,7 +29,7 @@
             }
         }
 
-        /* Hover animasi tombol */
+        
         .btn-hover:hover {
             transform: translateY(-3px);
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);

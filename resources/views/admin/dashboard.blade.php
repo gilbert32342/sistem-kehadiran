@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <!-- Manajemen Pengguna -->
+    
     <a href="{{ route('admin.users.index') }}" class="bg-white shadow-md rounded-lg p-6 flex items-center space-x-4 hover:shadow-lg transition">
         <i class="fas fa-users text-blue-500 text-3xl"></i>
         <div>
@@ -13,7 +13,7 @@
         </div>
     </a>
 
-    <!-- Statistik Kehadiran -->
+    
     <a href="{{ route('admin.statistik') }}" class="bg-white shadow-md rounded-lg p-6 flex items-center space-x-4 hover:shadow-lg transition">
         <i class="fas fa-chart-bar text-green-500 text-3xl"></i>
         <div>
@@ -22,7 +22,7 @@
         </div>
     </a>
 
-    <!-- Rekap & Laporan -->
+    
     <a href="{{ route('admin.rekap.index') }}" class="bg-white shadow-md rounded-lg p-6 flex items-center space-x-4 hover:shadow-lg transition">
         <i class="fas fa-file-alt text-yellow-500 text-3xl"></i>
         <div>
@@ -31,7 +31,7 @@
         </div>
     </a>
 
-    <!-- Manajemen Materi -->
+    
     <a href="{{ route('admin.materi.index') }}" class="bg-white shadow-md rounded-lg p-6 flex items-center space-x-4 hover:shadow-lg transition">
         <i class="fas fa-book text-purple-500 text-3xl"></i>
         <div>

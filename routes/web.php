@@ -7,12 +7,12 @@ use App\Http\Controllers\Admin\{UserController, RekapController, MateriControlle
 use App\Http\Controllers\Guru\{MateriController as GuruMateriController, KehadiranSiswaController, KehadiranGuruController, AbsensiController as GuruAbsensiController, AbsensiSiswaController};
 use App\Http\Controllers\Siswa\{MateriSiswaController, KehadiranController};
 
-// ✅ Login Routes
+//LOGIN
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// ✅ Lupa Password Routes
+//RESET PASSWORD
 Route::prefix('password')->group(function () {
     Route::get('/forgot', [PasswordResetController::class, 'showLinkRequestForm'])->name('password.request');
     Route::post('/forgot', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
@@ -20,11 +20,11 @@ Route::prefix('password')->group(function () {
     Route::post('/reset', [PasswordResetController::class, 'reset'])->name('password.update');
 });
 
-// ✅ **Admin Routes**
+//ADMIN ROUTE
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
     Route::resource('users', UserController::class);
-    Route::post('/users/import', [UserController::class, 'import'])->name('users.import'); // ✅ Tambahkan ini
+    Route::post('/users/import', [UserController::class, 'import'])->name('users.import'); 
     Route::resource('materi', MateriController::class);
     Route::delete('/materi/{id}/deleteFile', [MateriController::class, 'deleteFile'])->name('materi.deleteFile');
     
@@ -36,7 +36,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/statistik', [StatistikKehadiranController::class, 'statistik'])->name('statistik');
 });
 
-// ✅ **Guru Routes**
+//GURU ROUTE
 Route::middleware(['auth', 'role:guru'])->prefix('guru')->name('guru.')->group(function () {
     Route::view('/dashboard', 'guru.dashboard')->name('dashboard');
     Route::resource('materi', GuruMateriController::class);
@@ -57,7 +57,7 @@ Route::middleware(['auth', 'role:guru'])->prefix('guru')->name('guru.')->group(f
     });
 });
 
-// ✅ **Siswa Routes**
+//SISWA ROUTE
 Route::middleware(['auth', 'role:siswa'])->prefix('siswa')->name('siswa.')->group(function () {
     Route::view('/dashboard', 'siswa.dashboard')->name('dashboard');
     Route::get('/materi', [MateriSiswaController::class, 'index'])->name('materi.index');

@@ -14,15 +14,15 @@ class KehadiranSiswaController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil filter dari request
+        
         $kelas = $request->get('kelas');
         $status = $request->get('status');
 
-        // Ambil daftar kelas unik dari absensi siswa saja
+        
         $kelasList = Absensi::where('role', 'siswa')->select('kelas')->distinct()->pluck('kelas')->toArray();
         $kelasRomawi = $this->convertKelasToRoman($kelasList);
 
-        // Query data absensi hanya untuk siswa
+        
         $query = Absensi::where('role', 'siswa');
 
         if ($kelas) {
@@ -33,13 +33,13 @@ class KehadiranSiswaController extends Controller
             $query->where('status', $status);
         }
 
-        // Paginate data (5 per halaman)
+        
         $absensi = $query->orderBy('tanggal', 'desc')->paginate(5);
 
         return view('guru.kehadiran.index', compact('absensi', 'kelasRomawi', 'kelas'));
     }
 
-    // ✅ Konversi Angka Kelas ke Romawi
+    
     private function convertKelasToRoman($kelasList)
     {
         $map = [
@@ -50,13 +50,13 @@ class KehadiranSiswaController extends Controller
 
         $kelasRomawi = [];
         foreach ($kelasList as $kelas) {
-            $kelasRomawi[$kelas] = $map[$kelas] ?? $kelas; // Default jika tidak ada dalam daftar
+            $kelasRomawi[$kelas] = $map[$kelas] ?? $kelas; 
         }
 
         return $kelasRomawi;
     }
 
-    // ✅ Export ke Excel (dengan filter)
+    
     public function exportExcel(Request $request)
     {
         $kelas = $request->get('kelas');
@@ -75,7 +75,7 @@ class KehadiranSiswaController extends Controller
         return Excel::download(new SiswaAbsensiExport(), 'riwayat-kehadiran-siswa.xlsx');
     }
 
-    // ✅ Export ke PDF (dengan filter)
+    
     public function exportPDF(Request $request)
     {
         $kelas = $request->get('kelas');

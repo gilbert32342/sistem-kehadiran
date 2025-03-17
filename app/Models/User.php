@@ -9,9 +9,9 @@ class User extends Authenticatable
 {
     use HasFactory;
 
-    // Kolom yang bisa diisi
+    
     protected $fillable = [
-        'name', 'nis', 'nip', 'password', 'role', 'kelas', // ✅ Tambahkan 'kelas'
+        'name', 'nis', 'nip', 'password', 'role', 'kelas',
     ];
 
     public function isAdmin() {

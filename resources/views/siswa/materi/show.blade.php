@@ -2,23 +2,23 @@
 
 @section('content')
 <div class="container mx-auto p-5 animate-fade-in">
-    <!-- Judul Materi -->
+    
     <h2 class="text-3xl font-bold mb-6 text-gray-800">{{ $materi->judul }}</h2>
     <p class="text-gray-600 mb-4">Diunggah oleh: <strong class="text-blue-600">{{ $materi->creator->name ?? 'Admin' }}</strong></p>
     
-    <!-- Deskripsi Materi -->
+    
     <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl shadow-lg mb-6 transition duration-300 ease-in-out hover:shadow-xl animate-fade-in-up">
         <div class="prose max-w-none text-gray-700 space-y-4">
             {!! $materi->deskripsi !!}
         </div>
     </div>    
 
-    <!-- File Download Section -->
+    
     @if($materi->file_path)
     <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-xl shadow-lg mb-6 transition duration-300 ease-in-out hover:shadow-xl animate-fade-in-up">
         <h3 class="text-xl font-semibold mb-4 text-gray-800">Unduh Materi</h3>
         
-        <!-- Menampilkan Nama File -->
+        
         <p class="text-gray-600 mb-2"><strong>File:</strong> {{ basename($materi->file_path) }}</p>
         
         <a href="{{ route('siswa.materi.download', $materi->id) }}" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105">
@@ -31,7 +31,7 @@
     </div>
     @endif
 
-    <!-- Tombol Kembali -->
+    
     <div class="mt-8 animate-fade-in">
         <a href="{{ route('siswa.materi.index') }}" class="inline-flex items-center px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition duration-300 ease-in-out transform hover:scale-105">
             <i class="fas fa-arrow-left mr-2"></i> Kembali ke Daftar Materi

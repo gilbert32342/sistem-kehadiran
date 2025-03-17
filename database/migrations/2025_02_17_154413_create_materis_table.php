@@ -9,8 +9,7 @@ return new class extends Migration {
     {
         Schema::create('materis', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('created_by'); // ID guru yang mengunggah materi
-            $table->string('judul');
+            $table->unsignedBigInteger('created_by');
             $table->text('deskripsi');
             $table->string('file_path')->nullable();
             $table->timestamps();

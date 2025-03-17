@@ -4,10 +4,8 @@
 <div class="p-5 animate-fade-in">
     <h2 class="text-2xl font-bold mt-4 mb-2 text-gray-800 animate-fade-in-up">📜 Riwayat Kehadiran Guru</h2>
 
-    <!-- Menampilkan Nama Guru -->
     <p class="text-lg font-semibold text-gray-700 mb-4 animate-fade-in-up">👤 Nama: {{ $guru->name }}</p>
 
-    <!-- Tabel Rekap Kehadiran -->
     <div class="overflow-x-auto bg-white shadow-lg rounded-lg p-4 animate-fade-in-up">
         <table class="table-auto w-full border-collapse border">
             <thead>
@@ -39,17 +37,17 @@
         </table>
     </div>
 
-    <!-- Tombol Aksi -->
+    
     <div class="mt-5 mb-4 flex justify-between items-center w-full animate-fade-in-up">
     
-        <!-- Tombol Export -->
+        
         <a href="{{ route('guru.kehadiran.exportGuruExcel') }}" 
             class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-200 flex items-center transform hover:scale-105">
             📤 Ekspor Kehadiran Guru
         </a>
     </div>
 
-    <!-- Navigasi Pagination -->
+    
     <div class="mt-5 animate-fade-in">
         {{ $kehadiran->links('pagination::tailwind') }}
     </div>

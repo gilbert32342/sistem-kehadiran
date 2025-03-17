@@ -5,7 +5,7 @@
 @section('content')
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-    <!-- Riwayat Kehadiran -->
+    
     <a href="{{ route('siswa.kehadiran.index') }}" class="bg-white shadow-md rounded-lg p-6 flex items-center space-x-4 hover:shadow-lg transition">
         <i class="fas fa-history text-purple-500 text-3xl"></i>
         <div>
@@ -14,7 +14,7 @@
         </div>
     </a>
 
-    <!-- Materi Pembelajaran -->
+    
     <a href="{{ route('siswa.materi.index') }}" class="bg-white shadow-md rounded-lg p-6 flex items-center space-x-4 hover:shadow-lg transition">
         <i class="fas fa-book text-blue-500 text-3xl"></i>
         <div>

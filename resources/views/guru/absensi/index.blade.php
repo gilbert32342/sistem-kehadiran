@@ -6,7 +6,7 @@
 <div class="max-w-5xl mx-auto mt-6 animate-fade-in" x-data="{ showNotification: true }">
     <h1 class="text-2xl font-bold text-gray-700 mb-4 animate-fade-in-up">📋 Absensi Guru</h1>
 
-    <!-- 🔹 Notifikasi -->
+    
     @if(session('success') || session('error'))
         <div x-show="showNotification" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-y-4" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform translate-y-4" class="relative mb-4 p-4 rounded-lg shadow-md {{ session('success') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
             {!! session('success') ?? session('error') !!}
@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <!-- 🔹 Tombol Absensi -->
+    
     <form action="{{ route('guru.absensi.store') }}" method="POST" class="mb-6 animate-fade-in-up">
         @csrf
         <label class="block mb-2 text-gray-700 font-semibold">Pilih Status:</label>
@@ -31,7 +31,7 @@
         </button>
     </form>
 
-    <!-- 🔹 Tabel Absensi Guru -->
+    
     <div class="overflow-x-auto animate-fade-in-up">
         <table class="w-full bg-white shadow-lg rounded-lg overflow-hidden">
             <thead class="bg-gray-200">

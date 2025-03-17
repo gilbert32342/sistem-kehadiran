@@ -10,9 +10,9 @@ return new class extends Migration {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('nis')->nullable()->unique(); // Untuk siswa
-            $table->string('nip')->nullable()->unique(); // Untuk guru & admin
-            $table->string('kelas')->nullable(); // Tambahkan kolom kelas
+            $table->string('nis')->nullable()->unique(); 
+            $table->string('nip')->nullable()->unique(); 
+            $table->string('kelas')->nullable(); 
             $table->string('password');
             $table->enum('role', ['admin', 'guru', 'siswa']);
             $table->timestamps();

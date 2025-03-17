@@ -9,19 +9,19 @@
             @csrf
             @method('PUT')
 
-            <!-- Judul -->
+            
             <div class="mb-4 animate-fade-in-up">
                 <label for="judul" class="block text-gray-600 font-semibold mb-2">Judul</label>
                 <input type="text" id="judul" name="judul" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300 ease-in-out" value="{{ $materi->judul }}" required>
             </div>
 
-            <!-- Deskripsi -->
+            
             <div class="mb-4 animate-fade-in-up">
                 <label for="deskripsi" class="block text-gray-600 font-semibold mb-2">Deskripsi</label>
                 <textarea id="deskripsi" name="deskripsi" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300 ease-in-out" required>{{ $materi->deskripsi }}</textarea>
             </div>
 
-            <!-- File Materi -->
+            
             <div class="mb-4 animate-fade-in-up">
                 <label for="file" class="block text-gray-600 font-semibold mb-2">Upload File (Opsional)</label>
                 <input type="file" id="file" name="file" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300 ease-in-out">
@@ -35,7 +35,7 @@
                 @endif
             </div>
 
-            <!-- Tombol Submit -->
+            
             <button type="submit" class="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105 animate-fade-in-up">
                 ✅ Update Materi
             </button>
