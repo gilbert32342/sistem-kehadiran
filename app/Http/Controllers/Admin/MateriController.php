@@ -31,12 +31,14 @@ class MateriController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'file' => 'nullable|file|mimes:pdf,doc,docx,ppt,pptx,xlsx,txt|max:2048',
+            'file' => 'nullable|file|mimes:pdf,doc,docx,ppt,pptx,xlsx,txt,jpg,png|max:2048',
         ]);
 
         $filePath = null;
         if ($request->hasFile('file')) {
-            $filePath = $request->file('file')->store('materi_files', 'public');
+            $file = $request->file('file');
+            $filename = $file->getClientOriginalName(); // Gunakan nama asli tanpa tambahan angka
+            $filePath = $file->storeAs('materi_files', $filename, 'public');            
         }
 
         Materi::create([
@@ -59,15 +61,17 @@ class MateriController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'file' => 'nullable|file|mimes:pdf,doc,docx,ppt,pptx,xlsx|max:2048',
+            'file' => 'nullable|file|mimes:pdf,doc,docx,ppt,pptx,xlsx,txt,jpg,png|max:2048',
         ]);
 
         if ($request->hasFile('file')) {
             if ($materi->file_path) {
                 Storage::disk('public')->delete($materi->file_path);
             }
-            $filePath = $request->file('file')->store('materi_files', 'public');
-            $materi->file_path = $filePath;
+            $file = $request->file('file');
+            $filename = $file->getClientOriginalName(); // Gunakan nama asli tanpa tambahan angka
+            $filePath = $file->storeAs('materi_files', $filename, 'public');            
+            $materi->file_path = $filePath;            
         }
 
         $materi->update([

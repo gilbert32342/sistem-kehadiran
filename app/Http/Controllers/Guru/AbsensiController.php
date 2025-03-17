@@ -39,7 +39,7 @@ class AbsensiController extends Controller
             ->first();
     
         if ($existingAbsensi) {
-            return redirect()->route('guru.absensi.index')->with('error', 'kamu udah absen hari ini.');
+            return redirect()->route('guru.absensi.index')->with('error', 'Anda sudah melakukan absensi hari ini.');
         }
     
         // ✅ Simpan absensi jika belum ada

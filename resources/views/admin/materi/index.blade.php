@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('page_title', 'Manajemen Materi')
 
@@ -9,13 +9,15 @@
 
     {{-- Tombol Tambah dan Dropdown Sorting --}}
     <div class="flex justify-between items-center mb-4">
-        <a href="{{ route('admin.materi.create') }}" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+        {{-- Tombol Tambah Materi --}}
+        <a href="{{ route('admin.materi.create') }}" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-transform transform hover:scale-105">
             + Tambah Materi
         </a>
     
+        {{-- Dropdown Sorting --}}
         <form method="GET" action="{{ route('admin.materi.index') }}" class="flex items-center">
             <label class="mr-2 text-gray-700">Urutkan:</label>
-            <select name="sort" class="border rounded px-3 py-1" onchange="this.form.submit()">
+            <select name="sort" class="border rounded px-3 py-1 transition-transform transform hover:scale-105" onchange="this.form.submit()">
                 <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>A-Z</option>
                 <option value="desc" {{ request('sort') == 'desc' ? 'selected' : '' }}>Z-A</option>
             </select>
@@ -43,7 +45,7 @@
                     <td class="border px-4 py-2">{{ Str::limit($materi->deskripsi, 50) }}</td>
                     <td class="border px-4 py-2">
                         @if ($materi->file_path)
-                            <a href="{{ Storage::url($materi->file_path) }}" target="_blank" class="text-blue-600 underline">
+                            <a href="{{ Storage::url($materi->file_path) }}" target="_blank" class="text-blue-600 underline hover:text-blue-800 transition-colors">
                                 📂 Lihat File
                             </a>
                         @else
@@ -51,17 +53,19 @@
                         @endif
                     </td>
                     <td class="border px-4 py-2">
-                        {{ $materi->creator->name ?? 'Admin' }} <!-- Perbaikan -->
-                    </td>                    
+                        {{ $materi->creator->name ?? 'Admin' }}
+                    </td>
                     <td class="border px-4 py-2 text-center">
                         <div class="flex justify-center items-center space-x-2">
-                            <a href="{{ route('admin.materi.edit', $materi->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600">
+                            {{-- Tombol Edit --}}
+                            <a href="{{ route('admin.materi.edit', $materi->id) }}" class="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600 transition-transform transform hover:scale-105">
                                 Edit
                             </a>
+                            {{-- Tombol Hapus --}}
                             <form action="{{ route('admin.materi.destroy', $materi->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600">
+                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600 transition-transform transform hover:scale-105">
                                     Hapus
                                 </button>
                             </form>
@@ -75,7 +79,7 @@
 
     {{-- Pagination --}}
     <div class="mt-4">
-        {{ $materis->links() }}
+        {{ $materis->links('vendor.pagination.default') }}
     </div>    
 </div>
 

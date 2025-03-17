@@ -45,8 +45,8 @@ class RekapController extends Controller
         }
 
         // Ambil data dengan pagination
-        $rekapSiswa = $querySiswa->orderBy('absensis.tanggal', 'desc')->paginate(10, ['*'], 'siswa_page');
-        $rekapGuru = $queryGuru->orderBy('absensis.tanggal', 'desc')->paginate(10, ['*'], 'guru_page');
+        $rekapSiswa = $querySiswa->orderBy('absensis.tanggal', 'desc')->paginate(5, ['*'], 'siswa_page');
+        $rekapGuru = $queryGuru->orderBy('absensis.tanggal', 'desc')->paginate(5, ['*'], 'guru_page');
 
         return view('admin.rekap.index', compact('rekapSiswa', 'rekapGuru'));
     }

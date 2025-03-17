@@ -24,7 +24,9 @@ class KehadiranGuruController extends Controller
        
     public function exportGuruExcel()
     {
-        $guruId = Auth::id(); // Ambil ID guru yang sedang login
-        return Excel::download(new GuruAbsensiExport($guruId), 'kehadiran_guru.xlsx');
-    }
+        $guru = Auth::user(); // Ambil data guru yang sedang login
+        $fileName = 'kehadiran_' . str_replace(' ', '_', strtolower($guru->name)) . '.xlsx'; // Nama file dinamis
+    
+        return Excel::download(new GuruAbsensiExport($guru->id), $fileName);
+    }    
 }

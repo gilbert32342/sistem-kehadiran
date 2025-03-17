@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.admin')
+
+@section('page_title', 'Rekap dan Laporan')
 
 @section('content')
 <div class="container mx-auto p-6">
@@ -13,12 +15,16 @@
             <option value="sakit" {{ request('status') == 'sakit' ? 'selected' : '' }}>Sakit</option>
             <option value="alpha" {{ request('status') == 'alpha' ? 'selected' : '' }}>Alpha</option>
         </select>
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-blue-600 transition duration-200">🔍 Filter</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-blue-600 transition-transform transform hover:scale-105">
+            🔍 Filter
+        </button>
     </form>
 
     {{-- Export Button --}}
     <div class="flex gap-3 mb-6">
-        <a href="{{ route('admin.rekap.export') }}" class="bg-green-500 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-green-600 transition duration-200">📥 Export Excel</a>
+        <a href="{{ route('admin.rekap.export') }}" class="bg-green-500 text-white px-4 py-2 rounded-lg shadow-sm hover:bg-green-600 transition-transform transform hover:scale-105">
+            📥 Export Excel
+        </a>
     </div>
 
     {{-- Tabel Absensi Siswa --}}
@@ -45,21 +51,10 @@
                     <td class="border p-3">{{ $siswa->tanggal }}</td>
                     <td class="border p-3">
                         <div class="flex gap-2">
-                            <!-- Tombol Edit -->
-                            <button 
-                                onclick="openModalEdit({{ $siswa->id }}, '{{ $siswa->status }}')" 
-                                class="text-blue-500 hover:text-blue-700 transition duration-200"
-                                title="Edit"
-                            >
+                            <button onclick="openModalEdit({{ $siswa->id }}, '{{ $siswa->status }}')" class="text-blue-500 hover:text-blue-700 transition duration-200" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </button>
-
-                            <!-- Tombol Hapus -->
-                            <button 
-                                onclick="openModalDelete({{ $siswa->id }})" 
-                                class="text-red-500 hover:text-red-700 transition duration-200"
-                                title="Hapus"
-                            >
+                            <button onclick="openModalDelete({{ $siswa->id }})" class="text-red-500 hover:text-red-700 transition duration-200" title="Hapus">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
@@ -68,7 +63,10 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $rekapSiswa->links() }}
+        {{-- Pagination --}}
+        <div class="mt-4 p-3">
+            {{ $rekapSiswa->links('vendor.pagination.default') }}
+        </div>
     </div>
 
     {{-- Tabel Absensi Guru --}}
@@ -93,21 +91,10 @@
                     <td class="border p-3">{{ $guru->tanggal }}</td>
                     <td class="border p-3">
                         <div class="flex gap-2">
-                            <!-- Tombol Edit -->
-                            <button 
-                                onclick="openModalEdit({{ $guru->id }}, '{{ $guru->status }}')" 
-                                class="text-blue-500 hover:text-blue-700 transition duration-200"
-                                title="Edit"
-                            >
+                            <button onclick="openModalEdit({{ $guru->id }}, '{{ $guru->status }}')" class="text-blue-500 hover:text-blue-700 transition duration-200" title="Edit">
                                 <i class="fas fa-edit"></i>
                             </button>
-
-                            <!-- Tombol Hapus -->
-                            <button 
-                                onclick="openModalDelete({{ $guru->id }})" 
-                                class="text-red-500 hover:text-red-700 transition duration-200"
-                                title="Hapus"
-                            >
+                            <button onclick="openModalDelete({{ $guru->id }})" class="text-red-500 hover:text-red-700 transition duration-200" title="Hapus">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
@@ -116,7 +103,10 @@
                 @endforeach
             </tbody>
         </table>
-        {{ $rekapGuru->links() }}
+        {{-- Pagination --}}
+        <div class="mt-4 p-3">
+            {{ $rekapGuru->links('vendor.pagination.default') }}
+        </div>
     </div>
 </div>
 
@@ -166,7 +156,7 @@
         const modal = document.getElementById('modalEdit');
         modal.classList.remove('hidden');
         modal.classList.add('flex');
-        document.body.classList.add('overflow-hidden'); // Nonaktifkan scroll pada body
+        document.body.classList.add('overflow-hidden');
         setTimeout(() => {
             modal.querySelector('div').classList.remove('scale-95', 'opacity-0');
         }, 10);
@@ -179,7 +169,7 @@
         const modal = document.getElementById('modalDelete');
         modal.classList.remove('hidden');
         modal.classList.add('flex');
-        document.body.classList.add('overflow-hidden'); // Nonaktifkan scroll pada body
+        document.body.classList.add('overflow-hidden');
         setTimeout(() => {
             modal.querySelector('div').classList.remove('scale-95', 'opacity-0');
         }, 10);
@@ -192,24 +182,21 @@
         setTimeout(() => {
             modal.classList.add('hidden');
             modal.classList.remove('flex');
-            document.body.classList.remove('overflow-hidden'); // Aktifkan kembali scroll pada body
+            document.body.classList.remove('overflow-hidden');
         }, 300);
     }
 </script>
 
 <style>
-    /* Nonaktifkan scroll pada body saat modal dibuka */
     body.overflow-hidden {
         overflow: hidden;
     }
 
-    /* Batasi tinggi modal dan tambahkan scroll di dalam modal */
     .modal-content {
         max-height: 90vh;
         overflow-y: auto;
     }
 
-    /* Sembunyikan scrollbar pada modal */
     .modal-content::-webkit-scrollbar {
         display: none;
     }

@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->string('nip')->nullable();
             $table->enum('role', ['siswa', 'guru'])->default('siswa');
-            $table->string('nis')->index();
+            $table->string('nis')->nullable();
             $table->string('nama');
             $table->string('kelas')->nullable();
             $table->enum('status', ['hadir', 'izin', 'sakit', 'alpha']);

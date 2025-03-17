@@ -6,16 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log; // ✅ Tambahkan ini
+use Illuminate\Support\Facades\Log; 
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
 
     public function index()
     {
-        $users = User::whereIn('role', ['guru', 'siswa'])->get(['id', 'name', 'role', 'nis', 'nip', 'kelas']);
+        $users = User::whereIn('role', ['guru', 'siswa', 'admin'])->paginate(10);
         return view('admin.users.index', compact('users'));
-        
     }    
 
     public function create()
@@ -80,6 +81,20 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('admin.users.index')->with('success', 'Data berhasil dihapus!');
+    }
+    
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,csv'
+        ]);
+    
+        try {
+            Excel::import(new UsersImport, $request->file('file'));
+            return back()->with('success', 'Data berhasil diimport!');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Beberapa data sudah ada dan tidak dapat dimport!');
+        }
     }
     
 }

@@ -25,6 +25,16 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
+                'name' => 'Admin',
+                'nis' => null,
+                'nip' => '2222222',
+                'kelas' => null,
+                'password' => Hash::make('admin123'),
+                'role' => 'admin',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
                 'name' => 'Guru Matematika',
                 'nis' => null,
                 'nip' => '9876543210',
@@ -35,7 +45,7 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Siswa A',
+                'name' => 'Siswa',
                 'nis' => '2200112233',
                 'nip' => null,
                 'kelas' => 'X TKJ',

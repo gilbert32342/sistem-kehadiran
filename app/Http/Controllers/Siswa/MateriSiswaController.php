@@ -35,12 +35,12 @@ class MateriSiswaController extends Controller
     public function download(Materi $materi)
     {
         $filePath = storage_path('app/public/' . $materi->file_path);
-
+    
         if (file_exists($filePath)) {
-            $namaFile = $materi->judul . '.' . pathinfo($filePath, PATHINFO_EXTENSION);
-            return response()->download($filePath, $namaFile);
+            return response()->download($filePath, basename($materi->file_path)); // Gunakan nama asli file
         } else {
             return redirect()->route('siswa.materi.index')->with('error', 'File tidak ditemukan');
         }
-    }
+    }     
+     
 }

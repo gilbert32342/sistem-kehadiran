@@ -23,7 +23,9 @@ class KehadiranController extends Controller
        
     public function export()
     {
-        $siswa = Auth::user();
-        return Excel::download(new KehadiranExport($siswa->id), 'kehadiran_siswa.xlsx');
-    }
+        $siswa = Auth::user(); // Ambil data siswa yang sedang login
+        $fileName = 'kehadiran_' . str_replace(' ', '_', strtolower($siswa->name)) . '.xlsx'; // Nama file dinamis
+    
+        return Excel::download(new KehadiranExport($siswa->id), $fileName);
+    }    
 }

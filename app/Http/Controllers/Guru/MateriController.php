@@ -36,7 +36,9 @@ class MateriController extends Controller
     
         $filePath = null;
         if ($request->hasFile('file')) {
-            $filePath = $request->file('file')->store('materi_files', 'public');
+            $file = $request->file('file');
+            $filename = $file->getClientOriginalName(); 
+            $filePath = $file->storeAs('materi_files', $filename, 'public');
         }
     
         Materi::create([
@@ -75,7 +77,9 @@ class MateriController extends Controller
             if ($materi->file_path) {
                 Storage::disk('public')->delete($materi->file_path);
             }
-            $filePath = $request->file('file')->store('materi_files', 'public');
+            $file = $request->file('file');
+            $filename = $file->getClientOriginalName(); 
+            $filePath = $file->storeAs('materi_files', $filename, 'public');            
             $materi->file_path = $filePath;
         }
 

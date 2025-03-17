@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Absensi;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\AbsensiExport;
+use App\Exports\SiswaAbsensiExport;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class KehadiranSiswaController extends Controller
@@ -71,7 +72,7 @@ class KehadiranSiswaController extends Controller
 
         $absensi = $query->get();
 
-        return Excel::download(new AbsensiExport(), 'riwayat-kehadiran.xlsx');
+        return Excel::download(new SiswaAbsensiExport(), 'riwayat-kehadiran-siswa.xlsx');
     }
 
     // ✅ Export ke PDF (dengan filter)
@@ -91,6 +92,6 @@ class KehadiranSiswaController extends Controller
         $absensi = $query->get();
         $pdf = Pdf::loadView('guru.kehadiran.pdf', compact('absensi'));
 
-        return $pdf->download('riwayat-kehadiran.pdf');
+        return $pdf->download('riwayat-kehadiran-siswa.pdf');
     }
 }

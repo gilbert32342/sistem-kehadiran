@@ -10,11 +10,19 @@ use Illuminate\Support\Facades\Auth;
 
 class AbsensiSiswaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $siswa = User::where('role', 'siswa')->get(); // Ambil semua siswa dari users
-        return view('guru.absensi.siswa', compact('siswa'));
-    }
+        $kelasList = User::where('role', 'siswa')->distinct()->pluck('kelas'); // Ambil daftar kelas unik
+        $query = User::where('role', 'siswa');
+    
+        if ($request->has('kelas') && $request->kelas != '') {
+            $query->where('kelas', $request->kelas);
+        }
+    
+        $siswa = $query->get();
+        
+        return view('guru.absensi.siswa', compact('siswa', 'kelasList'));
+    }    
 
     public function store(Request $request)
     {
@@ -47,11 +55,12 @@ class AbsensiSiswaController extends Controller
                     'user_id' => $siswa->id,
                     'nama' => $siswa->name,
                     'nis' => $siswa->nis,
+                    'kelas' => $siswa->kelas, // ✅ Tambahkan kelas
                     'status' => $status,
                     'tanggal' => now(),
                     'role' => 'siswa',
                     'guru_id' => $guruId
-                ]);
+                ]);                
             }
         }
     
