@@ -1,8 +1,4 @@
-Berikut adalah README yang telah diperbaiki dengan format yang lebih rapi dan konsisten:  
-
----
-
-# **Sistem Kehadiran**  
+**Sistem Kehadiran**  
 
 Sistem Kehadiran adalah aplikasi berbasis web yang dibangun dengan Laravel untuk mencatat dan mengelola data kehadiran pengguna.  
 
