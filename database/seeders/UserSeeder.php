@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => 'Admin LAB CoE',
+                'name' => 'Admin',
                 'nis' => null,
                 'nip' => '1234567890',
                 'kelas' => null,
@@ -25,17 +25,7 @@ class UserSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Admin',
-                'nis' => null,
-                'nip' => '2222222',
-                'kelas' => null,
-                'password' => Hash::make('admin123'),
-                'role' => 'admin',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'name' => 'Guru Matematika',
+                'name' => 'Guru',
                 'nis' => null,
                 'nip' => '9876543210',
                 'kelas' => 'X PPLG',
